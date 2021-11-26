@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <!--Project was exported from assembly: D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina_Data\Mods\Purgatory2077\Assemblies\Purgatory.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D74140D4-499A-4B6D-9E0D-615994440B93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Purgatory</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina_Data\Managed\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseMod">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1256670\2603522001\Assemblies\BaseMod.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SourceCode\CommonBuf.cs" />
+    <Compile Include="SourceCode\ReserveEcheloe\PassiveAbility_100001.cs" />
+    <Compile Include="SourceCode\ReserveEcheloe\PassiveAbility_100002.cs" />
+    <Compile Include="SourceCode\ReserveEcheloe\PassiveAbility_100003.cs" />
+    <Compile Include="SourceCode\ReserveEcheloe\PassiveAbility_100004.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\DiceCardAbility_SJZ3.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\DiceCardSelfAbility_SJZ4.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\DiceCardSelfAbility_SJZ0.cs" />
+    <Compile Include="SourceCode\Reuinion\DiceCardSelfAbility_SUD2Card.cs" />
+    <Compile Include="SourceCode\Reuinion\DiceCardSelfAbility_SUD1Card.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\DiceCardAbility_FSD4.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\DiceCardAbility_FSD3.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\DiceCardAbility_FSD2.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\DiceCardSelfAbility_FSD5.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\DiceCardSelfAbility_FSD1.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardAbility_SX10.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardAbility_SXAOE.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardAbility_SX6.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX8.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX9.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX7.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX5.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX4.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX3.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX2.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\DiceCardSelfAbility_SX1.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardAbility_MFST1.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardAbility_MFST0.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardSelfAbility_MFST6.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardSelfAbility_MFST5.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardSelfAbility_MFST4.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardSelfAbility_MFST3.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\DiceCardSelfAbility_MFST2.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\DiceCardAbility_GZ4.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\DiceCardAbility_GZ3.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\DiceCardAbility_GZ1.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\DiceCardSelfAbility_GZ0.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\DiceCardSelfAbility_GZ5.cs" />
+    <Compile Include="SourceCode\Reuinion\SkullShatterer\DiceCardSelfAbility_SG2.cs" />
+    <Compile Include="SourceCode\Reuinion\SkullShatterer\DiceCardSelfAbility_SG1.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardAbility_TLL10.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL13.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL12.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL0.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL9.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL8.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL7.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL6.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL4.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL3.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL2.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL1.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL5.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL11.cs" />
+    <Compile Include="SourceCode\Reuinion\W\DiceCardSelfAbility_W1.cs" />
+    <Compile Include="SourceCode\Reuinion\W\DiceCardSelfAbility_W0.cs" />
+    <Compile Include="SourceCode\Reuinion\W\DiceCardSelfAbility_WDeep2Card.cs" />
+    <Compile Include="SourceCode\Reuinion\W\DiceCardSelfAbility_WDeep1Card.cs" />
+    <Compile Include="SourceCode\Rusthammer\DiceCardSelfAbility_15A7P1037.cs" />
+    <Compile Include="SourceCode\Rusthammer\PassiveAbility_HDK5.cs" />
+    <Compile Include="SourceCode\Skadi\PassiveAbility_100006.cs" />
+    <Compile Include="SourceCode\ReserveEcheloe\PassiveAbility_100005.cs" />
+    <Compile Include="SourceCode\Skadi\PassiveAbility_100007.cs" />
+    <Compile Include="SourceCode\Skadi\PassiveAbility_100008.cs" />
+    <Compile Include="SourceCode\Surtr\PassiveAbility_100010.cs" />
+    <Compile Include="SourceCode\Surtr\PassiveAbility_100011.cs" />
+    <Compile Include="SourceCode\Skadi\PassiveAbility_100009.cs" />
+    <Compile Include="SourceCode\Surtr\PassiveAbility_100012.cs" />
+    <Compile Include="SourceCode\Surtr\PassiveAbility_100013.cs" />
+    <Compile Include="SourceCode\Surtr\PassiveAbility_100014.cs" />
+    <Compile Include="SourceCode\Skadi\PassiveAbility_100015.cs" />
+    <Compile Include="SourceCode\Gladia\PassiveAbility_100016.cs" />
+    <Compile Include="SourceCode\Gladia\PassiveAbility_100017.cs" />
+    <Compile Include="SourceCode\Gladia\PassiveAbility_100018.cs" />
+    <Compile Include="SourceCode\Gladia\PassiveAbility_100019.cs" />
+    <Compile Include="SourceCode\Spectre\PassiveAbility_100020.cs" />
+    <Compile Include="SourceCode\Spectre\PassiveAbility_100021.cs" />
+    <Compile Include="SourceCode\Spectre\PassiveAbility_100022.cs" />
+    <Compile Include="SourceCode\Angelina\PassiveAbility_100023.cs" />
+    <Compile Include="SourceCode\Angelina\PassiveAbility_100024.cs" />
+    <Compile Include="SourceCode\Lappland\PassiveAbility_100025.cs" />
+    <Compile Include="SourceCode\Angelina\PassiveAbility_100026.cs" />
+    <Compile Include="SourceCode\Angelina\PassiveAbility_100027.cs" />
+    <Compile Include="SourceCode\Astesia\PassiveAbility_100028.cs" />
+    <Compile Include="SourceCode\Astesia\PassiveAbility_100029.cs" />
+    <Compile Include="SourceCode\Astesia\PassiveAbility_100030.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\PassiveAbility_100043.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\PassiveAbility_100044.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\PassiveAbility_100045.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\PassiveAbility_100046.cs" />
+    <Compile Include="SourceCode\DeepColor\PassiveAbility_100047.cs" />
+    <Compile Include="SourceCode\ReserveOpA1\PassiveAbility_100032.cs" />
+    <Compile Include="SourceCode\ReserveOpA1\PassiveAbility_100033.cs" />
+    <Compile Include="SourceCode\ReserveOpA1\PassiveAbility_100034.cs" />
+    <Compile Include="SourceCode\ReserveOpA1\PassiveAbility_100035.cs" />
+    <Compile Include="SourceCode\ReserveOpA4\PassiveAbility_100037.cs" />
+    <Compile Include="SourceCode\ReserveOpA4\PassiveAbility_100038.cs" />
+    <Compile Include="SourceCode\ReserveOpA4\PassiveAbility_100039.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\PassiveAbility_100042.cs" />
+    <Compile Include="SourceCode\ReserveOpA4\PassiveAbility_100040.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\PassiveAbility_100041.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\PassiveAbility_100048.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\PassiveAbility_100049.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\PassiveAbility_100050.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\PassiveAbility_100051.cs" />
+    <Compile Include="SourceCode\LongMen\Swire\PassiveAbility_100052.cs" />
+    <Compile Include="SourceCode\LongMen\Swire\PassiveAbility_100053.cs" />
+    <Compile Include="SourceCode\LongMen\Hoshiguma\PassiveAbility_100054.cs" />
+    <Compile Include="SourceCode\LongMen\Hoshiguma\PassiveAbility_100055.cs" />
+    <Compile Include="SourceCode\Harmony_Patch.cs" />
+    <Compile Include="SourceCode\ReserveOpA1\PassiveAbility_100031.cs" />
+    <Compile Include="SourceCode\ReserveOpA4\PassiveAbility_100036.cs" />
+    <Compile Include="SourceCode\LongMen\Hoshiguma\PassiveAbility_100056.cs" />
+    <Compile Include="SourceCode\Grani\PassiveAbility_100057.cs" />
+    <Compile Include="SourceCode\Grani\PassiveAbility_100058.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Texas\PassiveAbility_100059.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Texas\PassiveAbility_100060.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Croissant\PassiveAbility_100061.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Croissant\PassiveAbility_100062.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Exusiai\PassiveAbility_100063.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Exusiai\PassiveAbility_100064.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Exusiai\PassiveAbility_100065.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Sora\PassiveAbility_100066.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Sora\PassiveAbility_100067.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\PassiveAbility_100068.cs" />
+    <Compile Include="SourceCode\RhineLab\PassiveAbility_100069.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\PassiveAbility_100070.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\PassiveAbility_100072.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\PassiveAbility_100071.cs" />
+    <Compile Include="SourceCode\RhineLab\Silence\PassiveAbility_100073.cs" />
+    <Compile Include="SourceCode\RhineLab\Silence\PassiveAbility_100074.cs" />
+    <Compile Include="SourceCode\RhineLab\Silence\PassiveAbility_100075.cs" />
+    <Compile Include="SourceCode\RhineLab\Saria\PassiveAbility_100076.cs" />
+    <Compile Include="SourceCode\RhineLab\Saria\PassiveAbility_100077.cs" />
+    <Compile Include="SourceCode\RhineLab\Ifrit\PassiveAbility_100079.cs" />
+    <Compile Include="SourceCode\LongMen\DiceCardSelfAbility_LD2up.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\DiceCardSelfAbility_OrchidFuckYou.cs" />
+    <Compile Include="SourceCode\Gladia\DiceCardSelfAbility_gldy.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\DiceCardAbility_JueYin.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\DiceCardSelfAbility_BaDao.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\DiceCardSelfAbility_Chen1.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\DiceCardSelfAbility_Chen2.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\DiceCardSelfAbility_Chen3.cs" />
+    <Compile Include="SourceCode\LongMen\Swire\DiceCardSelfAbility_Swire.cs" />
+    <Compile Include="SourceCode\Grani\DiceCardSelfAbility_Grani1.cs" />
+    <Compile Include="SourceCode\Grani\DiceCardSelfAbility_Grani2.cs" />
+    <Compile Include="SourceCode\Spectre\DiceCardSelfAbility_Shark.cs" />
+    <Compile Include="SourceCode\Surtr\DiceCardSelfAbility_42ts.cs" />
+    <Compile Include="SourceCode\Surtr\DiceCardSelfAbility_42tts.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Texas\DiceCardSelfAbility_texas1.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Texas\DiceCardSelfAbility_texas2.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Croissant\DiceCardAbility_croissant1.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Croissant\DiceCardAbility_croissant2.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Exusiai\DiceCardAbility_exusiai1.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Exusiai\DiceCardAbility_exusiai2.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Sora\DiceCardSelfAbility_Sora1.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Sora\DiceCardSelfAbility_Sora2.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Sora\DiceCardSelfAbility_Sora3.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\DiceCardSelfAbility_Ptilopsis1.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\DiceCardSelfAbility_Ptilopsis2.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\DiceCardSelfAbility_Ptilopsis3.cs" />
+    <Compile Include="SourceCode\RhineLab\Ptilopsis\DiceCardSelfAbility_Ptilopsis4.cs" />
+    <Compile Include="SourceCode\RhineLab\Silence\DiceCardSelfAbility_Silence1.cs" />
+    <Compile Include="SourceCode\RhineLab\Silence\DiceCardSelfAbility_Silence2.cs" />
+    <Compile Include="SourceCode\RhineLab\Saria\DiceCardSelfAbility_Saria1.cs" />
+    <Compile Include="SourceCode\RhineLab\Saria\DiceCardSelfAbility_Saria2.cs" />
+    <Compile Include="SourceCode\RhineLab\Saria\DiceCardSelfAbility_Saria3.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU1.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU2.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU3.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU4.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardAbility_DU5.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardAbility_DU6.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU7.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU8.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU9.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU10.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU11.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU12.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU13.cs" />
+    <Compile Include="SourceCode\DeepU\DiceCardSelfAbility_DU14.cs" />
+    <Compile Include="SourceCode\PenguinLogistics\Exusiai\DiceCardSelfAbility_exusiai3.cs" />
+    <Compile Include="SourceCode\LongMen\Chen\DiceCardAbility_JueYin2.cs" />
+    <Compile Include="SourceCode\Surtr\DiceCardAbility_42ttts.cs" />
+    <Compile Include="SourceCode\Angelina\DiceCardAbility_Angelina.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\DiceCardAbility_Catapult.cs" />
+    <Compile Include="SourceCode\ReserveOpA6\DiceCardAbility_Catapultplayer.cs" />
+    <Compile Include="SourceCode\RhineLab\Saria\PassiveAbility_100078.cs" />
+    <Compile Include="SourceCode\RhineLab\Ifrit\PassiveAbility_100080.cs" />
+    <Compile Include="SourceCode\RhineLab\Ifrit\PassiveAbility_100081.cs" />
+    <Compile Include="SourceCode\Kaltsit\PassiveAbility_100083.cs" />
+    <Compile Include="SourceCode\Doctor\PassiveAbility_100082.cs" />
+    <Compile Include="SourceCode\Kaltsit\PassiveAbility_100085.cs" />
+    <Compile Include="SourceCode\Kaltsit\PassiveAbility_100084.cs" />
+    <Compile Include="SourceCode\Amiya_Guard\PassiveAbility_100086.cs" />
+    <Compile Include="SourceCode\Amiya_Guard\PassiveAbility_100087.cs" />
+    <Compile Include="SourceCode\Amiya_Guard\BattleUnitBuf_breakNearCard.cs" />
+    <Compile Include="SourceCode\Amiya_Guard\BattleUnitBuf_breakFarCard.cs" />
+    <Compile Include="SourceCode\Amiya_Guard\PassiveAbility_100088.cs" />
+    <Compile Include="SourceCode\Amiya_Guard\BattleUnitBuf_100088.cs" />
+    <Compile Include="SourceCode\Reuinion\SkullShatterer\PassiveAbility_100099.cs" />
+    <Compile Include="SourceCode\Mandela\PassiveAbility_100089.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\PassiveAbility_100094.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\PassiveAbility_100095.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\PassiveAbility_100096.cs" />
+    <Compile Include="SourceCode\Reuinion\SkullShatterer\PassiveAbility_100097.cs" />
+    <Compile Include="SourceCode\Reuinion\SkullShatterer\PassiveAbility_100098.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\PassiveAbility_100103.cs" />
+    <Compile Include="SourceCode\Reuinion\W\PassiveAbility_100100.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\PassiveAbility_100101.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\PassiveAbility_100102.cs" />
+    <Compile Include="SourceCode\Reuinion\Faust\PassiveAbility_100104.cs" />
+    <Compile Include="SourceCode\Reuinion\Mephisto\PassiveAbility_100105.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\PassiveAbility_100106.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\PassiveAbility_100107.cs" />
+    <Compile Include="SourceCode\Reuinion\FrostNova\PassiveAbility_100108.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\PassiveAbility_100112.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\PassiveAbility_100109.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\PassiveAbility_100114.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\PassiveAbility_100110.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\PassiveAbility_100111.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\PassiveAbility_100113.cs" />
+    <Compile Include="SourceCode\Rusthammer\GraveStone\BehaviourAction_tombstonedawnAction.cs" />
+    <Compile Include="SourceCode\Purgatory\PassiveAbility_10491.cs" />
+    <Compile Include="SourceCode\Purgatory\PassiveAbility_10492.cs" />
+    <Compile Include="SourceCode\Purgatory\PassiveAbility_10493.cs" />
+    <Compile Include="SourceCode\Purgatory\PassiveAbility_10494.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_Purgatory2playW1P1.cs" />
+    <Compile Include="SourceCode\Purgatory\PassiveAbility_10495.cs" />
+    <Compile Include="SourceCode\Purgatory\PassiveAbility_10496.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_PurgatoryplayB1W1.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_Purgatoryenery1N1.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_Purgatory1Burn.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_PurgatoryNoBurn.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_PurgatoryEx.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardAbility_PurgatoryWork.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardAbility_PurgatoryEork.cs" />
+    <Compile Include="SourceCode\Purgatory\DiceCardSelfAbility_PurgatoryOffBurn.cs" />
+    <Compile Include="SourceCode\Rusthammer\Avenger\DiceCardAbility_15_10up.cs" />
+    <Compile Include="SourceCode\Rusthammer\DefendCrusher\DiceCardAbility_37_6weak.cs" />
+    <Compile Include="SourceCode\Rusthammer\Bonethrower\DiceCardSelfAbility_P10_no7hp1f.cs" />
+    <Compile Include="SourceCode\Rusthammer\ShieldedCaster\DiceCardAbility_A7_no8host.cs" />
+    <Compile Include="SourceCode\Rusthammer\Avenger\PassiveAbility_HDK1.cs" />
+    <Compile Include="SourceCode\Rusthammer\ShieldedCaster\PassiveAbility_HDK2.cs" />
+    <Compile Include="SourceCode\Rusthammer\Bonethrower\PassiveAbility_HDK4.cs" />
+    <Compile Include="SourceCode\Rusthammer\DefendCrusher\PassiveAbility_HDK3.cs" />
+    <Compile Include="SourceCode\Rusthammer\Forsaken\PassiveAbility_HDK6.cs" />
+    <Compile Include="SourceCode\Rusthammer\GraveStone\PassiveAbility_HDK7.cs" />
+    <Compile Include="SourceCode\Rusthammer\DefendCrusher\PassiveAbility_HDK8.cs" />
+    <Compile Include="SourceCode\Reuinion\Talulah\DiceCardSelfAbility_TLL14.cs" />
+    <Compile Include="SourceCode\Reuinion\SkullShatterer\DiceCardSelfAbility_SG0.cs" />
+    <Compile Include="SourceCode\Reuinion\Singer,Mephisto\DiceCardSelfAbility_GZ2.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\DiceCardAbility_SJZ2.cs" />
+    <Compile Include="SourceCode\Reuinion\CrownSlayer\DiceCardSelfAbility_SJZ1.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
