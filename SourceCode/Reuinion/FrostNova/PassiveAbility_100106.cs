@@ -13,6 +13,13 @@ namespace Ark
     {
         private int _phase = 1;
         private bool _nextPhase;
+        public override void OnWaveStart()
+        {
+            if (owner.faction == Faction.Player)
+                owner.UnitData.floorBattleData.param3 = _phase;
+            else
+                owner.UnitData.floorBattleData.param2 = _phase;
+        }
         public override bool isImmortal
         {
             get

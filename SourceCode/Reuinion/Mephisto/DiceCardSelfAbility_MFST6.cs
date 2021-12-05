@@ -12,7 +12,7 @@ namespace Ark
     //[使用时] 若转移了核心书页[歌者]则在下一幕开始时抽取2张书页并使本书页所有骰子威力+8
     public class DiceCardSelfAbility_MFST4 :DiceCardSelfAbilityBase 
     {
-        private const int SingerEquipPageId = 1;
+        private const int SingerEquipPageId = 10000053;
         public static string Desc = "[使用时] 若转移了核心书页[歌者]则在下一幕开始时抽取2张书页并使本书页所有骰子威力+8";
         public override void OnUseCard()
         {

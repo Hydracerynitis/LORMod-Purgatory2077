@@ -13,11 +13,11 @@ namespace Ark
         {
             if (owner.bufListDetail.GetKewordBufStack(KeywordBuf.Strength) < 5)
                 return;
-            owner.allyCardDetail.AddNewCard(new LorId("Purgatory2077", 112));
+            owner.allyCardDetail.AddNewCard(new LorId("Purgatory2077", 159));
         }
         public override void OnRoundStart()
         {
-            foreach (BattleUnitModel alive in BattleObjectManager.instance.GetAliveList(owner.faction))
+            foreach (BattleUnitModel alive in BattleObjectManager.instance.GetAliveList(owner.faction).FindAll(x => x!=owner))
                 alive.bufListDetail.AddBuf(new BattleUnitBuf_100088(alive));
         }
      }

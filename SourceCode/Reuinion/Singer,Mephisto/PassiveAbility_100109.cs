@@ -9,22 +9,26 @@ namespace Ark
     //活性粉尘      每一幕开始对所有敌方单位造成自身“束缚”层数的伤害，自身的“束缚”层数不会自动减少
     public class PassiveAbility_100109 : PassiveAbilityBase
     {
-        public override void OnRoundStart()
+        private int bindStack;
+        public override void OnRoundEnd()
         {
-            owner.battleCardResultLog?.SetPassiveAbility(this);
+            bindStack = 0;
             foreach (BattleUnitBuf activatedBuf in owner.bufListDetail.GetActivatedBufList())
             {
                 if (activatedBuf.bufType == KeywordBuf.Binding)
                 {
                     int stack = activatedBuf.stack;
-                    if (stack > 0)
-                    {
-                        owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Binding, stack);
-                        foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList_opponent(owner.faction))
-                            battleUnitModel.TakeDamage(stack, DamageType.Passive);
-                    }
+                    bindStack = stack;
                 }
             }
+        }
+        public override void OnRoundStart()
+        {
+            if (bindStack <= 0)
+                return;
+            owner.bufListDetail.AddKeywordBufThisRoundByEtc(KeywordBuf.Binding, bindStack);
+            foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList_opponent(owner.faction))
+                battleUnitModel.TakeDamage(bindStack, DamageType.Passive);
         }
     }
 }

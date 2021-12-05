@@ -41,4 +41,11 @@ namespace Ark
         }
         public override void OnRoundEnd() => Destroy();
     }
+    public class CostIncrease : BattleDiceCardBuf
+    {
+        public override int GetCost(int oldCost)
+        {
+            return oldCost + 1;
+        }
+    }
 }

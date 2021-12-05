@@ -10,10 +10,9 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //[强壮]不低于4层才可使用书页
-    public class DiceCardSelfAbility_FSD5 : DiceCardSelfAbilityBase
+    //该骰子造成伤害时将无视抗性
+    public class DiceCardAbility_GZ8 : DiceCardAbilityBase
     {
-        public static string Desc = "[强壮]不低于4层才可使用书页";
-        public override bool OnChooseCard(BattleUnitModel owner) => owner.bufListDetail.GetKewordBufStack(KeywordBuf.Strength) >= 4;
+        public static string Desc = "该骰子造成伤害时将无视抗性";
     }
 }

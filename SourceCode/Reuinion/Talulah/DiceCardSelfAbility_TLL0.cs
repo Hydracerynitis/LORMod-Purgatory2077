@@ -12,7 +12,7 @@ namespace Ark
     //[使用时] 抽取所有名字为[余烬]的书页
     public class DiceCardSelfAbility_TLL0 : DiceCardSelfAbilityBase
     {
-        private static List<int> AshCombatPageList = new List<int> (){ 1,2,3,4};  
+        private static List<int> AshCombatPageList = new List<int>() { 347, 348, 351, 352, 355, 356 };
         public static string Desc = "[使用时] 抽取所有名字为[余烬]的书页";
         public override void OnUseCard() => AshCombatPageList.ForEach(x => owner.allyCardDetail.DrawCardsAllSpecific(new LorId("Purgatory2077", x)));
     }

@@ -16,9 +16,14 @@ namespace Ark
             {
                 DiceCardSpec spec = curCard.card.GetSpec().Copy();
                 spec.Ranged = CardRange.Near;
+                curCard.card.CopySelf();
                 curCard.card.XmlData.Spec = spec;
                 curCard.ApplyDiceStatBonus(DiceMatch.AllAttackDice, new DiceStatBonus() { power = 1 });
             }
+        }
+        public override void OnEndBattle(BattlePlayingCardDataInUnitModel curCard)
+        {
+            curCard.card.ResetToOriginalData();
         }
     }
 }

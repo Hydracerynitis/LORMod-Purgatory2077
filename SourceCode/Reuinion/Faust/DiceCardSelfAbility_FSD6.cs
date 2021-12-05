@@ -10,10 +10,10 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //[强壮]不低于4层才可使用书页
-    public class DiceCardSelfAbility_FSD5 : DiceCardSelfAbilityBase
+    //[强壮]不低于6层才可使用书页
+    public class DiceCardSelfAbility_FSD6 : DiceCardSelfAbilityBase
     {
-        public static string Desc = "[强壮]不低于4层才可使用书页";
-        public override bool OnChooseCard(BattleUnitModel owner) => owner.bufListDetail.GetKewordBufStack(KeywordBuf.Strength) >= 4;
+        public static string Desc = "[强壮]不低于6层才可使用书页";
+        public override bool OnChooseCard(BattleUnitModel owner) => owner.bufListDetail.GetKewordBufStack(KeywordBuf.Strength) >= 6;
     }
 }

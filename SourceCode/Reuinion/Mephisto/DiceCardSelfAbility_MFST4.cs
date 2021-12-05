@@ -12,7 +12,7 @@ namespace Ark
     //[使用时] 若转移了核心书页[歌者]则使所有敌方单位获得1层束缚
     public class DiceCardSelfAbility_MFST6 :DiceCardSelfAbilityBase 
     {
-        private const int SingerEquipPageId = 1;
+        private const int SingerEquipPageId = 10000053;
         public static string Desc = "[使用时] 若转移了核心书页[歌者]则使所有敌方单位获得1层束缚";
         public override void OnUseCard()
         {

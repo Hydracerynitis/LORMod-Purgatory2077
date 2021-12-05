@@ -10,15 +10,15 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //[使用时] [束缚]不低于2层时本书页造成三倍混乱伤害
-    public class DiceCardSelfAbility_SX5 : DiceCardSelfAbilityBase
+    //以本骰子进行拼点时不会受到任何伤害
+    public class DiceCardAbility_GZ6 : DiceCardAbilityBase
     {
-        public static string Desc = "[使用时] [束缚]不低于2层时本书页造成三倍混乱伤害";
-        public override void OnUseCard()
+        public static string Desc = "以本骰子进行拼点时不会受到任何伤害";
+        public override void BeforeRollDice()
         {
-            if (owner.bufListDetail.GetKewordBufStack(KeywordBuf.Binding) < 2)
+            if (behavior.TargetDice == null)
                 return;
-            card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus() { breakRate = 200 });
+            behavior.TargetDice.ApplyDiceStatBonus(new DiceStatBonus() { dmgRate = -9999, breakRate = -9999 });
         }
     }
 }

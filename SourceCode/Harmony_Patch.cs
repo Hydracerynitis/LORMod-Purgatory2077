@@ -10,13 +10,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Ark
 {
     public class Harmony_Patch: ModInitializer
     {
         public static string AssemblyPath;
-        public static Dictionary<UnitBattleDataModel, bool> p_100089;
+        public static Dictionary<UnitBattleDataModel, bool> p_100089 = new Dictionary<UnitBattleDataModel, bool>();
         public static bool HasMethod(Type type, string methodName)
         {
             foreach (MemberInfo method in type.GetMethods())
@@ -39,13 +41,10 @@ namespace Ark
                 harmony.Patch(typeof(BattleUnitBuf_warpCharge).GetMethod("UseStack", AccessTools.all), postfix: new HarmonyMethod(method2));
                 MethodInfo method3 = typeof(Harmony_Patch).GetMethod("BattleUnitEmotionDetail_CreateEmotionCoinAfter");
                 harmony.Patch(typeof(BattleUnitEmotionDetail).GetMethod("CreateEmotionCoin", AccessTools.all), postfix: new HarmonyMethod(method3));
-                MethodInfo method4 = typeof(Harmony_Patch).GetMethod("BattleUnitModel_CheckCardAvailable_Pre");
-                harmony.Patch(typeof(BattleUnitModel).GetMethod("CheckCardAvailable", AccessTools.all), prefix: new HarmonyMethod(method4));
-                MethodInfo method5 = typeof(Harmony_Patch).GetMethod("BattleUnitModel_CheckCardAvailableForPlayer_Pre");
-                harmony.Patch(typeof(BattleUnitModel).GetMethod("CheckCardAvailableForPlayer", AccessTools.all), prefix: new HarmonyMethod(method5));
                 MethodInfo method6 = typeof(Harmony_Patch).GetMethod("StageLibraryFloorModel_InitUnitList");
                 harmony.Patch(typeof(StageLibraryFloorModel).GetMethod("InitUnitList", AccessTools.all), prefix: new HarmonyMethod(method6));
-                p_100089 = new Dictionary<UnitBattleDataModel, bool>();
+                MethodInfo method7 = typeof(Harmony_Patch).GetMethod("BattleDiceCardUI_SetCard");
+                harmony.Patch(typeof(BattleDiceCardUI).GetMethod("SetCard", AccessTools.all), postfix: new HarmonyMethod(method7));
             }
             catch (Exception ex)
             {
@@ -94,48 +93,6 @@ namespace Ark
                 return;
             ____self.breakDetail.TakeBreakDamage(4);
         }
-        public static bool BattleUnitModel_CheckCardAvailable_Pre(BattleUnitModel __instance, ref bool __result, BattleDiceCardModel card)
-        {
-            try
-            {
-                if (__instance.bufListDetail.HasBuf<BattleUnitBuf_breakNearCard>() && card.GetSpec().Ranged == CardRange.Near)
-                {
-                    __result = false;
-                    return false;
-                }
-                if (__instance.bufListDetail.HasBuf<BattleUnitBuf_breakFarCard>() && card.GetSpec().Ranged == CardRange.Far)
-                {
-                    __result = false;
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText(AssemblyPath + "/CCAPreError.txt", ex.Message + Environment.NewLine + ex.StackTrace);
-            }
-            return true;
-        }
-        public static bool BattleUnitModel_CheckCardAvailableForPlayer_Pre(BattleUnitModel __instance, ref bool __result, BattleDiceCardModel card)
-        {
-            try
-            {
-                if (__instance.bufListDetail.HasBuf<BattleUnitBuf_breakNearCard>() && card.GetSpec().Ranged == CardRange.Near)
-                {
-                    __result = false;
-                    return false;
-                }
-                if (__instance.bufListDetail.HasBuf<BattleUnitBuf_breakFarCard>() && card.GetSpec().Ranged == CardRange.Far)
-                {
-                    __result = false;
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                File.WriteAllText(AssemblyPath + "/CCAFPPreError.txt", ex.Message + Environment.NewLine + ex.StackTrace);
-            }
-            return true;
-        }
         public static UnitBattleDataModel AddCustomFixUnitModel(StageLibraryFloorModel __instance, StageModel stage, LibraryFloorModel floor, int EquipID)
         {
             LorId lorId = new LorId("Purgatory2077", EquipID);
@@ -155,13 +112,48 @@ namespace Ark
                 unitBattleDataModelList.Add(AddCustomFixUnitModel(__instance, stage, floor, battleUnit));
             Traverse.Create((object)__instance).Field("_unitList").SetValue((object)unitBattleDataModelList);
         }
-        //public static List<LibraryFloorModel> GetOpenedFloorList() => LibraryModel.Instance.GetOpenedFloorList();
         public static bool StageLibraryFloorModel_InitUnitList(StageLibraryFloorModel __instance,StageModel stage,  LibraryFloorModel floor)
         {
-            if (stage.ClassInfo.id.packageId != "Purgatory2077" || stage.ClassInfo.id.id != 3)
+            if (stage.ClassInfo.id.packageId != "Purgatory2077")
                 return true;
-            UnitModelList(__instance, stage, floor, new List<int>(){ 3, 4, 5, 6 });
-            return false;
+            switch (stage.ClassInfo.id.id)
+            {
+                case 3:
+                    UnitModelList(__instance, stage, floor, new List<int>(){ 3, 4, 5, 6 });
+                    return false;
+                case 13:
+                    UnitModelList(__instance, stage, floor, new List<int>() {3, 4, 5, 6 });
+                    return false;
+                case 17:
+                    UnitModelList(__instance, stage, floor, new List<int>() { 103 });
+                    return false;
+                case 18:
+                    UnitModelList(__instance, stage, floor, new List<int>() { 103, 104, 105});
+                    return false;
+                case 20:
+                    UnitModelList(__instance, stage, floor, new List<int>() { 103, 104, 105 });
+                    return false;
+            }
+            return true;
+        }
+        public static void BattleDiceCardUI_SetCard(BattleDiceCardUI __instance, ref Color ___colorFrame, BattleDiceCardModel cardModel, ref Color ___colorLineardodge, ref Color ___colorLineardodge_deactive, params BattleDiceCardUI.Option[] options)
+        {
+            if (__instance.CardModel == null)
+                return;
+            if (true)
+            {
+                ___colorFrame = new Color(1f, 1f, 1f, 1f);
+                ___colorLineardodge = new Color(1f, 1f, 1f, 0.0f);
+                ___colorLineardodge_deactive = ___colorLineardodge;
+                __instance.img_Frames[0].sprite = BaseMod.Harmony_Patch.ArtWorks["Ark_LeftPage_RHINELABBase"];
+                __instance.img_Frames[1].sprite = BaseMod.Harmony_Patch.ArtWorks["Ark_DiceCard_RHINELABbuf"];
+                __instance.img_Frames[2].sprite = BaseMod.Harmony_Patch.ArtWorks["Ark_DiceCard_RHINELABbuf"];
+                __instance.img_Frames[3].sprite = BaseMod.Harmony_Patch.ArtWorks["Ark_DiceCard_RHINELABbuf"];
+                Image imgFrame = __instance.img_Frames[4];
+                imgFrame.sprite = BaseMod.Harmony_Patch.ArtWorks["Ark_RightPage_RHINELABBase"];
+                __instance.GetType().GetMethod("SetFrameColor", AccessTools.all).Invoke(__instance, new object[]{ ___colorFrame });
+                __instance.GetType().GetMethod("SetLinearDodgeColor", AccessTools.all, null, new Type[]{typeof (Color) }, null).Invoke(__instance, new object[] { ___colorLineardodge });
+            }
         }
     }
 }

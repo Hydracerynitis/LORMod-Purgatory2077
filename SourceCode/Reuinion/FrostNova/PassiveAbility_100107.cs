@@ -12,12 +12,11 @@ namespace Ark
     public class PassiveAbility_100107 : PassiveAbilityBase
     {
         public override bool IsImmune(KeywordBuf buf) => buf == KeywordBuf.Binding;
-        public override void BeforeRollDice(BattleDiceBehavior behavior)
+        public override void OnStartParrying(BattlePlayingCardDataInUnitModel card)
         {
-            if (behavior.TargetDice == null || behavior.card.card.GetSpec().Ranged != CardRange.Far)
+            if (card.card.GetSpec().Ranged != CardRange.Far)
                 return;
-            owner.battleCardResultLog?.SetPassiveAbility(this);
-            behavior.TargetDice.owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Binding, 1);
+            card.target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Binding, 1);
         }
     }
 }

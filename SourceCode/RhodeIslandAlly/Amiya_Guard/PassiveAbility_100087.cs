@@ -13,7 +13,14 @@ namespace Ark
         {   
             if (owner.bufListDetail.GetKewordBufStack(KeywordBuf.Endurance) < 5)
                 return;
-            owner.allyCardDetail.AddNewCard(new LorId("Purgatory2077", 111));
+            owner.allyCardDetail.AddNewCard(new LorId("Purgatory2077", 148));
+        }
+        public override void OnRoundStart()
+        {
+            int count = 4 - owner.allyCardDetail.GetHand().Count;
+            if (count <= 0)
+                return;
+            owner.allyCardDetail.DrawCards(count);
         }
     }
 }

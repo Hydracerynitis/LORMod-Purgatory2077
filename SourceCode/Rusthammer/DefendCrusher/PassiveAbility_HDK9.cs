@@ -8,11 +8,10 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //重压前进/震颤之击     舞台开启时光芒上限-1/第三张书页的“打击”骰子命中目标时使目标下一幕"眩晕"且可以使用专属书页[锈锤之战](不可转移 触发效果后移除此被动)
-    public class PassiveAbility_HDK8 : PassiveAbilityBase
+    //震颤之击     第三张书页的“打击”骰子命中目标时使目标下一幕"眩晕"且可以使用专属书页[锈锤之战](不可转移 触发效果后移除此被动)
+    public class PassiveAbility_HDK9 : PassiveAbilityBase
     {
         private int _count;
-        public override int MaxPlayPointAdder() => -1;
         public override void OnUseCard(BattlePlayingCardDataInUnitModel curCard)
         {
             ++_count;

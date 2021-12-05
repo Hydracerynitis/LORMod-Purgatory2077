@@ -12,7 +12,6 @@ namespace Ark
         public static string Desc = "本书页骰子将重复投掷8次";
         public override void OnUseCard()
         {
-            base.OnUseCard();
             foreach(BattleDiceBehavior dice in card.GetDiceBehaviorList())
             {
                 dice.abilityList.Add(new Repeat8() { behavior=dice});
@@ -23,7 +22,7 @@ namespace Ark
             private int _repeatCount;
             public override void AfterAction()
             {
-                if (owner.IsBreakLifeZero() || _repeatCount >= 7)
+                if (owner.IsBreakLifeZero() || _repeatCount > 7)
                     return;
                 ++_repeatCount;
                 ActivateBonusAttackDice();
