@@ -11,6 +11,7 @@ namespace Ark
     //[使用时] 若自身持有振奋且速度高于目标则使本书页所有骰子威力+2
     public class DiceCardSelfAbility_DU9 : DiceCardSelfAbilityBase
     {
+        public static string Desc = "[使用时] 若自身持有振奋且速度高于目标则使本书页所有骰子威力+2";
         public override void OnUseCard()
         {
             BattleUnitModel target = this.card.target;

@@ -9,20 +9,20 @@ namespace Ark
     //本书页骰子将重复投掷8次
     public class DiceCardSelfAbility_exusiai3 : DiceCardSelfAbilityBase
     {
-        public static string Desc = "本书页骰子将重复投掷8次";
+        public static string Desc = "本书页骰子将重复投掷3次";
         public override void OnUseCard()
         {
             foreach(BattleDiceBehavior dice in card.GetDiceBehaviorList())
             {
-                dice.abilityList.Add(new Repeat8() { behavior=dice});
+                dice.abilityList.Add(new Repeat3() { behavior=dice});
             }
         }
-        public class Repeat8: DiceCardAbilityBase
+        public class Repeat3: DiceCardAbilityBase
         {
-            private int _repeatCount;
+            private int _repeatCount=0;
             public override void AfterAction()
             {
-                if (owner.IsBreakLifeZero() || _repeatCount > 7)
+                if (owner.IsBreakLifeZero() || _repeatCount >= 2)
                     return;
                 ++_repeatCount;
                 ActivateBonusAttackDice();

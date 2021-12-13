@@ -11,9 +11,16 @@ namespace Ark
     //闪现        回避骰子与防御型骰子拼点胜利时可以继续使用
     public class PassiveAbility_100095 : PassiveAbilityBase
     {
-        public override void BeforeRollDice(BattleDiceBehavior behavior)
+        public override void OnWinParrying(BattleDiceBehavior behavior)
         {
-            if (behavior.Detail != BehaviourDetail.Evasion || behavior.TargetDice.Detail != BehaviourDetail.Guard)
+            if (behavior.Detail != BehaviourDetail.Evasion || behavior.TargetDice?.Detail != BehaviourDetail.Guard)
+                return;
+            owner.battleCardResultLog?.SetPassiveAbility(this);
+            behavior.isBonusEvasion = true;
+        }
+        public override void OnDrawParrying(BattleDiceBehavior behavior)
+        {
+            if (behavior.Detail != BehaviourDetail.Evasion || behavior.TargetDice.Detail != BehaviourDetail.Evasion || behavior.DiceResultValue <= behavior.TargetDice?.DiceResultValue)
                 return;
             owner.battleCardResultLog?.SetPassiveAbility(this);
             behavior.isBonusEvasion = true;

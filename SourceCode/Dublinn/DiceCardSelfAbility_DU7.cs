@@ -9,6 +9,7 @@ namespace Ark
     //[使用时] 使所有友方单位获得1层[振奋]
     public class DiceCardSelfAbility_DU7 : DiceCardSelfAbilityBase
     {
+        public static string Desc = "[使用时] 使所有友方单位获得1层[振奋]";
         public override string[] Keywords => new string[1]{ "bstart_Keyword" };
         public override void OnStartBattle()
         {

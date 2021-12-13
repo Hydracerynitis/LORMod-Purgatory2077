@@ -9,6 +9,7 @@ namespace Ark
     //[使用时] 下一幕获得1层[振奋]并抽1张牌
     public class DiceCardSelfAbility_DU3 : DiceCardSelfAbilityBase
     {
+        public static string Desc = "[使用时] 下一幕获得1层[振奋]并抽1张牌";
         public override string[] Keywords => new string[1]{ "DrawCard_Keyword" };
         public override void OnUseCard()
         {

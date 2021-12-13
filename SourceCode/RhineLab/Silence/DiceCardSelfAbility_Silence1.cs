@@ -6,15 +6,13 @@
 
 namespace Ark
 {
-    //[使用时]获得4层[充能]并使随机一名友方单位恢复4点体力
+    //[使用时]本书页所有骰子获得[充能]层数的最大值提升
     public class DiceCardSelfAbility_Silence1 : DiceCardSelfAbilityBase
     {
-        public static string Desc = "[使用时]获得4层[充能]并使随机一名友方单位恢复4点体力";
+        public static string Desc = "[使用时] 本书页所有骰子获得[充能]层数的最大值提升";
         public override void OnUseCard()
         {
-            owner.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.WarpCharge, 4, owner);
-            foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList_random(owner.faction, 1))
-                battleUnitModel.RecoverHP(4);
+            card.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus() { max = owner.bufListDetail.GetKewordBufStack(KeywordBuf.WarpCharge) });
         }
         public override string[] Keywords => new string[1]{ "WarpCharge" };
     }

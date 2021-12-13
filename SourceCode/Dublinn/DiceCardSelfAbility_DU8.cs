@@ -9,6 +9,7 @@ namespace Ark
     //[使用时] 使这一幕所有的[守护][振奋]转移到下一幕
     public class DiceCardSelfAbility_DU8 : DiceCardSelfAbilityBase
     {
+        public static string Desc = "[使用时] 使这一幕所有的[守护][振奋]转移到下一幕";
         public override void OnUseCard()
         {
             foreach (BattleUnitBuf activatedBuf in owner.bufListDetail.GetActivatedBufList())
@@ -21,7 +22,7 @@ namespace Ark
                 }
                 if (activatedBuf.bufType == KeywordBuf.BreakProtection)
                 {
-                    this.owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.BreakProtection, activatedBuf.stack, null);
+                    owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.BreakProtection, activatedBuf.stack, null);
                     activatedBuf.stack = 0;
                     activatedBuf.Destroy();
                 }

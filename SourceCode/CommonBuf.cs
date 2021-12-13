@@ -48,4 +48,11 @@ namespace Ark
             return oldCost + 1;
         }
     }
+    public class RhineShade: BattleDiceCardBuf
+    {
+        public override void OnRoundEnd()
+        {
+            Destroy();
+        }
+    }
 }

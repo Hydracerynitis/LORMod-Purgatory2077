@@ -17,7 +17,7 @@ namespace Ark
         public override void OnUseCard()
         {
             base.OnUseCard();
-            List<BattleDiceCardModel> BurnCard = owner.allyCardDetail.GetHand().FindAll(x => CheckCondition(x));
+            List<BattleDiceCardModel> BurnCard = owner.allyCardDetail.GetHand().FindAll(x => Harmony_Patch.CheckCondition(x, "Burn_Keyword"));
             if (BurnCard.Count <= 0)
                 return;
             List<BattleDiceCardModel> highest = new List<BattleDiceCardModel>();
@@ -37,32 +37,6 @@ namespace Ark
             foreach(BattleDiceBehavior dice in select.CreateDiceCardBehaviorList())
                 card.AddDice(dice);
         }
-        private bool CheckCondition(BattleDiceCardModel card)
-        {
-            if (card != null)
-            {
-                DiceCardXmlInfo xmlData = card.XmlData;
-                if (xmlData == null)
-                    return false;
-                if (xmlData.Keywords.Contains("Burn_Keyword"))
-                    return true;
-                List<string> abilityKeywords = Singleton<BattleCardAbilityDescXmlList>.Instance.GetAbilityKeywords(xmlData);
-                for (int index = 0; index < abilityKeywords.Count; ++index)
-                {
-                    if (abilityKeywords[index] == "Burn_Keyword")
-                        return true;
-                }
-                foreach (DiceBehaviour behaviour in card.GetBehaviourList())
-                {
-                    List<string> keywordsByScript = Singleton<BattleCardAbilityDescXmlList>.Instance.GetAbilityKeywords_byScript(behaviour.Script);
-                    for (int index = 0; index < keywordsByScript.Count; ++index)
-                    {
-                        if (keywordsByScript[index] == "Burn_Keyword")
-                            return true;
-                    }
-                }
-            }
-            return false;
-        }
+
     }
 }

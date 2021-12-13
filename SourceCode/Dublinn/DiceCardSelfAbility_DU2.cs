@@ -17,5 +17,14 @@ namespace Ark
             foreach (BattleUnitModel battleUnitModel in BattleObjectManager.instance.GetAliveList_random(unit.faction, 2))
                 battleUnitModel.bufListDetail.AddKeywordBufThisRoundByCard(KeywordBuf.BreakProtection, 1);
         }
+        public override void OnEnterCardPhase(BattleUnitModel unit, BattleDiceCardModel self)
+        {
+            if(unit.faction==Faction.Enemy && unit.allyCardDetail.GetHand().Contains(self) && 
+                unit.cardSlotDetail.PlayPoint - unit.cardSlotDetail.ReservedPlayPoint > self.GetCost())
+            {
+                unit.cardSlotDetail.AddCard(self, BattleObjectManager.instance.GetAliveList_random(Faction.Player, 1)[0], 0);
+            }
+                
+        }
     }
 }

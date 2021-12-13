@@ -15,36 +15,10 @@ namespace Ark
         private bool _tri;
         public override void OnUseCard(BattlePlayingCardDataInUnitModel curCard)
         {
-            if (!CheckCondition(curCard) || !_tri)
+            if (!Harmony_Patch.CheckCondition(curCard.card, "Smoke_Keyword") || !_tri)
                 return;
             owner.allyCardDetail.DrawCards(1);
             _tri = false;
-        }
-        private bool CheckCondition(BattlePlayingCardDataInUnitModel card)
-        {
-            if (card == null)
-                return false;
-            DiceCardXmlInfo xmlData = card.card.XmlData;
-            if (xmlData == null)
-                return false;
-            if (xmlData.Keywords.Contains("Smoke_Keyword"))
-                return true;
-            List<string> abilityKeywords = Singleton<BattleCardAbilityDescXmlList>.Instance.GetAbilityKeywords(xmlData);
-            for (int index = 0; index < abilityKeywords.Count; ++index)
-            {
-                if (abilityKeywords[index] == "Smoke_Keyword")
-                    return true;
-            }
-            foreach (DiceBehaviour behaviour in card.card.GetBehaviourList())
-            {
-                List<string> keywordsByScript = Singleton<BattleCardAbilityDescXmlList>.Instance.GetAbilityKeywords_byScript(behaviour.Script);
-                for (int index = 0; index < keywordsByScript.Count; ++index)
-                {
-                    if (keywordsByScript[index] == "Smoke_Keyword")
-                        return true;
-                }
-            }
-            return false;
         }
         public override void OnRoundStart() => _tri = true;
     }
