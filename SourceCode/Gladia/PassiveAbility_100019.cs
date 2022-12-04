@@ -6,20 +6,18 @@
 
 namespace Ark
 {
-    //猎人直觉  当这一幕受到单方面攻击时下一幕获得1层“迅捷”(每一幕至多触发1次)
+    //猎人直觉  当这一幕受到单方面攻击时下一幕获得1层“迅捷”(每一幕至多触发2次)
     public class PassiveAbility_100019 : PassiveAbilityBase
     {
-        private bool _trigger;
+        private int _trigger = 0 ;
         public override void OnRoundEnd()
         {
-            if (_trigger)
-                owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Quickness, 1, owner);
-            _trigger = false;
+            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Quickness, _trigger, owner);
+            _trigger = 0;
         }
         public override void OnStartTargetedOneSide(BattlePlayingCardDataInUnitModel attackerCard)
         {
-            base.OnStartTargetedOneSide(attackerCard);
-                _trigger = true;
+            _trigger++;
         }
     }
 }

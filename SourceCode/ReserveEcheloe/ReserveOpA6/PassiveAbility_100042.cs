@@ -6,7 +6,7 @@
 
 namespace Ark
 {
-    //滞留解力      拼点时使目标不受威力增减影响
+    //滞留解力      拼点时使目标受到的威力增减影响至多-4/+4
     public class PassiveAbility_100042 : PassiveAbilityBase
     {
         public override void OnStartParrying(BattlePlayingCardDataInUnitModel curCard)
@@ -14,7 +14,11 @@ namespace Ark
             BattleUnitModel target = curCard.target;
             if (target == null || target.currentDiceAction == null)
                 return;
-            target.currentDiceAction.ignorePower = true;
+            target.currentDiceAction.ApplyDiceAbility(DiceMatch.AllDice, new LowPower());
         }
+    }
+    public class LowPower : DiceCardAbilityBase
+    {
+
     }
 }

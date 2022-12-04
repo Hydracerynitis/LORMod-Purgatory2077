@@ -6,9 +6,13 @@
 
 namespace Ark
 {
-    //信使网络  每一幕额外抽取1张书页
+    //信使网络  每2幕额外抽取1张书页
     public class PassiveAbility_100023 : PassiveAbilityBase
     {
-        public override void OnRoundStart() => this.owner.allyCardDetail.DrawCards(1);
+        public override void OnRoundStart()
+        {
+            if(StageController.Instance.RoundTurn%2==0)
+                this.owner.allyCardDetail.DrawCards(1);
+        }
     }
 }

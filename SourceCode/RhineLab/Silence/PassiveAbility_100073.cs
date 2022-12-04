@@ -6,16 +6,24 @@
 
 namespace Ark
 {
-    //强化消耗      使用书页消耗充能时若剩余至少1层“充能”则消耗1层“充能”抽取1张书页
+    //强化消耗       使用书页消耗充能时若剩余至少1层"充能"则消耗1层"充能"抽取1张书页(每一幕至多触发1次)
     public class PassiveAbility_100073 : PassiveAbilityBase
     {
+        private bool Activate;
+        public override void OnRoundStart()
+        {
+            Activate = false;
+        }
         public override void OnUseChargeStack()
         {
+            if (Activate)
+                return;
             if (owner.bufListDetail.GetActivatedBuf(KeywordBuf.WarpCharge) is BattleUnitBuf_warpCharge activatedBuf && activatedBuf.stack >= 1)
             {
-                activatedBuf.UseStack(1, true);
+                activatedBuf.stack-=1;
                 owner.allyCardDetail.DrawCards(1);
                 owner.battleCardResultLog?.SetPassiveAbility(this);
+                Activate = true;
             }
         }
     }

@@ -21,7 +21,9 @@ namespace Ark
         public override void OnStartParrying(BattlePlayingCardDataInUnitModel card)
         {
             if (card.speedDiceResultValue < card.target.currentDiceAction.speedDiceResultValue)
-                card.target.currentDiceAction.ignorePower = true;
+            {
+                card.target.currentDiceAction.GetDiceBehaviorList().ForEach(x => x.abilityList.Add(new IgnoreStrength() { behavior = x }));
+            }
         }
     }
 }

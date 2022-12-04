@@ -10,10 +10,13 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //[战斗开始] 这一幕受到的混乱伤害-2并在下一幕抽取一张书页
-    public class DiceCardSelfAbility_W0 :DiceCardSelfAbilityBase 
+    //[命中时]使目标下一幕中陷入[晕眩]
+    public class DiceCardAbility_WDG1 : DiceCardAbilityBase 
     {
-        public static string Desc = "[战斗开始] 这一幕受到的混乱伤害-2并在下一幕抽取一张书页";
-        public override void OnStartBattle() => owner.bufListDetail.AddBuf(new DrawCard(2));
+        public static string Desc = "[命中时]使目标下一幕中陷入[晕眩]";
+        public override void OnSucceedAttack()
+        {
+            card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.Stun, 1, owner);
+        }
     }
 }

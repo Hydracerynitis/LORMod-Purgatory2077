@@ -10,10 +10,13 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //[战斗开始] 这一幕受到的混乱伤害-2并在下一幕抽取一张书页
-    public class DiceCardSelfAbility_W0 :DiceCardSelfAbilityBase 
+    //[拼点失败]使目标获得1层[腐蚀]
+    public class DiceCardAbility_Wonly :DiceCardAbilityBase 
     {
-        public static string Desc = "[战斗开始] 这一幕受到的混乱伤害-2并在下一幕抽取一张书页";
-        public override void OnStartBattle() => owner.bufListDetail.AddBuf(new DrawCard(2));
+        public static string Desc = "[拼点失败]使目标获得1层[腐蚀]";
+        public override void OnLoseParrying()
+        {
+            behavior.card.target.bufListDetail.AddKeywordBufByCard(KeywordBuf.Decay, 1, owner);
+        }
     }
 }

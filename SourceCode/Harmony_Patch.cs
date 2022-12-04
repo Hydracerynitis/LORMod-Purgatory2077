@@ -58,12 +58,23 @@ namespace Ark
                 harmony.Patch(typeof(BattleUnitModel).GetMethod("OnLoseParrying", AccessTools.all), postfix: new HarmonyMethod(method11));
                 MethodInfo method12 = typeof(Harmony_Patch).GetMethod("BattleUnitModel_OnWinParrying");
                 harmony.Patch(typeof(BattleUnitModel).GetMethod("OnWinParrying", AccessTools.all), postfix: new HarmonyMethod(method12));
+                MethodInfo method13 = typeof(Harmony_Patch).GetMethod("BookModel_GetSpeedDiceRule");
+                harmony.Patch(typeof(BookModel).GetMethod("GetSpeedDiceRule", AccessTools.all), postfix: new HarmonyMethod(method13));
+                MethodInfo method14 = typeof(Harmony_Patch).GetMethod("BattleUnitBuf_strength_BeforeRollDice");
+                harmony.Patch(typeof(BattleUnitBuf_strength).GetMethod("BeforeRollDice", AccessTools.all), prefix: new HarmonyMethod(method14));
+                MethodInfo method15 = typeof(Harmony_Patch).GetMethod("BattleDiceBehavior_UpdateDiceFinalValue");
+                harmony.Patch(typeof(BattleDiceBehavior).GetMethod("UpdateDiceFinalValue", AccessTools.all), postfix: new HarmonyMethod(method15));
+                MethodInfo method16 = typeof(Harmony_Patch).GetMethod("BattleDiceBehavior_ApplyDiceStatBonus");
+                harmony.Patch(typeof(BattleDiceBehavior).GetMethod("ApplyDiceStatBonus", AccessTools.all), postfix: new HarmonyMethod(method16));
+                MethodInfo method17 = typeof(Harmony_Patch).GetMethod("BattleUnitModel_OnUseCard");
+                harmony.Patch(typeof(BattleUnitModel).GetMethod("OnUseCard", AccessTools.all), prefix: new HarmonyMethod(method17));
             }
             catch (Exception ex)
             {
                 File.WriteAllText(AssemblyPath + "/testHPError.txt", ex.Message + Environment.NewLine + ex.StackTrace);
             }
         }
+        //被动-恢复光芒时
         public static void BattlePlayingCardSlotDetail_SetOnRecoverPlayPoint_Post(BattlePlayingCardSlotDetail __instance, BattleUnitModel ____self)
         {
             foreach (PassiveAbilityBase passive in ____self.passiveDetail.PassiveList)
@@ -81,6 +92,7 @@ namespace Ark
                 }
             }
         }
+        //被动-消耗充能时 + 这一接待内消耗充能
         public static void BattleUnitBuf_warpCharge_UseStack_Post(int v, bool isCard, ref bool __result, BattleUnitBuf_warpCharge __instance, BattleUnitModel ____owner)
         {
             if (!(__result && isCard))
@@ -104,12 +116,14 @@ namespace Ark
                 }
             }
         }
+        //情绪吸收
         public static void BattleUnitEmotionDetail_CreateEmotionCoinAfter(BattleUnitEmotionDetail __instance, BattleUnitModel ____self, int __result, EmotionCoinType coinType, int count)
         {
             if (!____self.passiveDetail.HasPassive<PassiveAbility_100087>() || __result <= 0 || coinType != EmotionCoinType.Negative)
                 return;
             ____self.breakDetail.TakeBreakDamage(4);
         }
+        //固定配队
         public static UnitBattleDataModel AddCustomFixUnitModel(StageLibraryFloorModel __instance, StageModel stage, LibraryFloorModel floor, int EquipID)
         {
             LorId lorId = new LorId("Purgatory2077", EquipID);
@@ -153,6 +167,7 @@ namespace Ark
             }
             return true;
         }
+        //莱茵镀层
         public static void BattleDiceCardUI_SetCard(BattleDiceCardUI __instance, ref Color ___colorFrame, BattleDiceCardModel cardModel, ref Color ___colorLineardodge, ref Color ___colorLineardodge_deactive, params BattleDiceCardUI.Option[] options)
         {
             if (__instance.CardModel == null)
@@ -250,6 +265,7 @@ namespace Ark
                 __result = copiedList;
             }
         }
+        //剑兔+莱茵专用 限定书页使用
         public static void BattleUnitModel_CheckCardAvailable(BattleUnitModel __instance,BattleDiceCardModel card, ref bool __result)
         {
             if (card.CreateDiceCardSelfAbilityScript() is DiceCardSelfAbility_Silence3 silence3 && !card.HasBuf<RhineShade>())
@@ -259,6 +275,7 @@ namespace Ark
             else if (__instance.passiveDetail.PassiveList.Find(x => x is PassiveAbility_100115)!=null && card.GetSpec().Ranged == CardRange.Near)
                 __result = false;
         }
+        //被动-友方单位拼点失败
         public static void BattleUnitModel_OnLoseParrying(BattleUnitModel __instance)
         {
             foreach(BattleUnitModel unit in BattleObjectManager.instance.GetAliveList(__instance.faction).FindAll(x => x!=__instance))
@@ -279,6 +296,7 @@ namespace Ark
                 }
             }
         }
+        //被动-友方单位拼点成功
         public static void BattleUnitModel_OnWinParrying(BattleUnitModel __instance)
         {
             foreach (BattleUnitModel unit in BattleObjectManager.instance.GetAliveList(__instance.faction).FindAll(x => x != __instance))
@@ -298,6 +316,88 @@ namespace Ark
                     }
                 }
             }
+        }
+        //速度骰锁定
+        public static void BookModel_GetSpeedDiceRule(BattleUnitModel unit, SpeedDiceRule __result)
+        {
+            if (unit.IsExtinction())
+                return;
+            int num = __result.diceNum;
+            foreach (PassiveAbilityBase passive in unit.passiveDetail.PassiveList)
+            {
+                if (HasMethod(passive.GetType(), "GetSpeedDiceNumLast"))
+                {
+                    try
+                    {
+                        object output = passive.GetType().GetMethod("GetSpeedDiceNumLast").Invoke(passive, (object[])null);
+                        if (output != null && output is int)
+                            num = (int)output;
+                    }
+                    catch (Exception ex)
+                    {
+                        File.AppendAllText(AssemblyPath + "/GSDNLPError.txt", ex.Message + "\n" + ex.StackTrace + "\n\n");
+                    }
+                }
+            }
+            if (num != __result.diceNum)
+            {
+                __result.diceNum = num;
+                int breaknum = __result.speedDiceList.FindAll(x => x.breaked == true).Count;
+                __result.speedDiceList = new List<SpeedDice>();
+                for (int index = 0; index < __result.diceNum; ++index)
+                {
+                    List<SpeedDice> speedDiceList = __result.speedDiceList;
+                    SpeedDice speedDice = new SpeedDice();
+                    speedDice.min = __result.diceMin;
+                    speedDice.value = 0;
+                    speedDice.faces = __result.diceFaces;
+                    speedDice.breaked = breaknum > 0;
+                    speedDiceList.Add(speedDice);
+                    --breaknum;
+                    if (breaknum < 0)
+                        breaknum = 0;
+                }
+            }
+        }
+        //折射缴械
+        public static bool BattleUnitBuf_strength_BeforeRollDice(BattleDiceBehavior behavior)
+        {
+            if (behavior.abilityList.Exists(x => x is IgnoreStrength))
+                return false;
+            return true;
+        }
+        //赤鞘
+        public static bool BattleUnitBuf_weak_BeforeRollDice(BattleDiceBehavior behavior)
+        {
+            if(behavior.owner.passiveDetail.HasPassive<PassiveAbility_100048>() && RandomUtil.valueForProb <= 0.67)
+                return false;
+            return true;
+        }
+        //鲍勃之力
+        public static void BattleDiceBehavior_UpdateDiceFinalValue(BattleDiceBehavior __instance,ref int ____diceFinalResultValue, int ____diceResultValue, DiceStatBonus ____statBonus)
+        {
+            if (__instance.abilityList.Exists(x => x.Invalidity) || ____statBonus.ignorePower || __instance.card.ignorePower || __instance.owner.IsNullifyPower())
+                return;
+            int power = ____diceFinalResultValue - ____diceResultValue;
+            if(__instance.owner.passiveDetail.HasPassive<PassiveAbility_100180>())
+                power =(int)( 1.5 * power);
+            ____diceFinalResultValue = Mathf.Max(1, ____diceResultValue + power);
+        }
+        //滞留解力
+        public static void BattleDiceBehavior_ApplyDiceStatBonus(BattleDiceBehavior __instance, DiceStatBonus ____statBonus)
+        {
+            if(__instance.abilityList.Exists(x => x is LowPower))
+                ____statBonus.power = Mathf.Clamp(____statBonus.power, -4, 4);
+        }
+        public static bool BattleUnitModel_OnUseCard(BattleUnitModel __instance, BattlePlayingCardDataInUnitModel card)
+        {
+            if(BattleUnitBuf_tomsEX.GetBuf(__instance, out BattleUnitBuf_tomsEX buf))
+            {
+                card.cardAbility = null;
+                card.GetDiceBehaviorList().ForEach(x => x.abilityList.Clear());
+                buf.Destroy();
+            }
+            return true;
         }
         public static bool CheckCondition(BattleDiceCardModel card, string Keyword)
         {

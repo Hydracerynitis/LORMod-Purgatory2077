@@ -8,7 +8,7 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //赤鞘        75%的概率斩击骰子威力+1
+    //赤鞘        67%概率使当前所用斩击骰子不受"虚弱"影响
     public class PassiveAbility_100048 : PassiveAbilityBase
     {
         public override void BeforeRollDice(BattleDiceBehavior behavior)

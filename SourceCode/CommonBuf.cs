@@ -55,4 +55,8 @@ namespace Ark
             Destroy();
         }
     }
+    public class IgnoreStrength: DiceCardAbilityBase
+    {
+
+    }
 }

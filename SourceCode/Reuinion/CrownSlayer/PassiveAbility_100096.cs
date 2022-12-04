@@ -6,7 +6,7 @@
 
 namespace Ark
 {
-    //弑君        单方面攻击时骰子伤害+3
+    //弑君        单方面攻击时骰子伤害+4
     public class PassiveAbility_100096 : PassiveAbilityBase
     {
         public override void BeforeRollDice(BattleDiceBehavior behavior)
@@ -14,7 +14,7 @@ namespace Ark
             if (behavior.IsParrying())
                 return;
             owner.battleCardResultLog?.SetPassiveAbility(this);
-            behavior.ApplyDiceStatBonus(new DiceStatBonus(){ dmg = 3 });
+            behavior.ApplyDiceStatBonus(new DiceStatBonus(){ dmg = 4 });
         }
     }
 }

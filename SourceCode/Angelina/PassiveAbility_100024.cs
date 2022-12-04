@@ -8,7 +8,7 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //叙拉古战法-远   拼点时防御型骰子威力+2
+    //叙拉古战法-远   防御型骰子拼点时威力+2
     public class PassiveAbility_100024 : PassiveAbilityBase
     {
         public override void BeforeRollDice(BattleDiceBehavior behavior)

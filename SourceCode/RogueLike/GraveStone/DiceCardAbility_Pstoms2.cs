@@ -10,10 +10,14 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //[战斗开始] 这一幕受到的混乱伤害-2并在下一幕抽取一张书页
-    public class DiceCardSelfAbility_W0 :DiceCardSelfAbilityBase 
+    //对持有[墓标]的目标骰子最终值翻倍
+    public class DiceCardAbility_Pstoms2 : DiceCardAbilityBase 
     {
-        public static string Desc = "[战斗开始] 这一幕受到的混乱伤害-2并在下一幕抽取一张书页";
-        public override void OnStartBattle() => owner.bufListDetail.AddBuf(new DrawCard(2));
+        public static string Desc = "对持有[墓标]的目标骰子最终值翻倍";
+        public override void BeforeRollDice()
+        {
+            if (BattleUnitBuf_tomsEX.GetBuf(card.target, out BattleUnitBuf_tomsEX Buf))
+                behavior.abilityList.Add(new DiceCardAbility_powerDouble());
+        }
     }
 }

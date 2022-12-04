@@ -17,7 +17,9 @@ namespace Ark
         {
             if (RandomUtil.valueForProb > 0.2)
                 return;
-            BattleUnitModel victim = RandomUtil.SelectOne<BattleUnitModel>(BattleObjectManager.instance.GetAliveList(owner.faction));
+            BattleUnitModel victim = RandomUtil.SelectOne(BattleObjectManager.instance.GetAliveList(owner.faction).FindAll(x => x!=owner));
+            if (victim == null || victim.cardSlotDetail.cardAry.Count<=0)
+                return;
             card.target = victim;
             card.targetSlotOrder = RandomUtil.Range(0, victim.cardSlotDetail.cardAry.Count - 1);
         }

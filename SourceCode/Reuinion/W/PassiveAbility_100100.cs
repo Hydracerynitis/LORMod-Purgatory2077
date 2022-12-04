@@ -6,13 +6,23 @@
 
 namespace Ark
 {
-    //C4    进攻型骰子拼点失败时给予目标1层“腐蚀” 命中有“腐蚀”的目标时追加“腐蚀”层数x2的伤害与混乱伤害并清除目标“腐蚀”层数
+    //C4    免疫“腐蚀”; 进攻型骰子拼点失败时给予双方1层“腐蚀"; 命中有“腐蚀”的目标时追加“腐蚀”层数的伤害与混乱伤害; 战斗开始在EGO栏位中获得特殊书页(不可转移)
     public class PassiveAbility_100100 : PassiveAbilityBase
     {
+        public override bool IsImmune(KeywordBuf buf)
+        {
+            return buf==KeywordBuf.Decay;
+        }
+        public override void OnWaveStart()
+        {
+            owner.personalEgoDetail.AddCard(new LorId("Purgatory2077", 357));
+            owner.personalEgoDetail.AddCard(new LorId("Purgatory2077", 358));
+        }
         public override void OnLoseParrying(BattleDiceBehavior behavior)
         {
             owner.battleCardResultLog?.SetPassiveAbility(this);
-            behavior.card.target?.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Decay, 1, owner);
+            owner.bufListDetail.AddKeywordBufThisRoundByEtc(KeywordBuf.Decay, 1);
+            behavior.card.target?.bufListDetail.AddKeywordBufThisRoundByEtc(KeywordBuf.Decay, 1, owner);
         }
         public override void OnSucceedAttack(BattleDiceBehavior behavior)
         {
@@ -26,9 +36,9 @@ namespace Ark
                 {
                     owner.battleCardResultLog?.SetPassiveAbility(this);
                     int stack = activatedBuf.stack;
-                    target.TakeDamage(stack * 2, DamageType.Passive);
-                    target.TakeBreakDamage(stack * 2, DamageType.Passive);
-                    activatedBuf.stack = 0;
+                    target.TakeDamage(stack , DamageType.Passive);
+                    target.TakeBreakDamage(stack , DamageType.Passive);
+                    //activatedBuf.stack = 0;
                 }
             }
         }

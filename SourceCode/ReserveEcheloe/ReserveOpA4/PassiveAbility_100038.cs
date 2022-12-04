@@ -9,15 +9,15 @@ using System;
 
 namespace Ark
 {
-    //集中穿破  使用只有一颗骰子(不包括反击骰)的远程书页时，造成的混乱+25%反震伤害+100%
+    //集中穿破  使用只有三颗骰子(不包括反击骰)的远程书页时，造成的混乱伤害+25%
     public class PassiveAbility_100038 : PassiveAbilityBase
     {
         public override void OnUseCard(BattlePlayingCardDataInUnitModel curCard)
         {
-            if (curCard.GetOriginalDiceBehaviorList().FindAll(x => x.Type != BehaviourType.Standby).Count != 1 && curCard.card.GetSpec().Ranged != CardRange.Far)
+            if (curCard.GetOriginalDiceBehaviorList().FindAll(x => x.Type != BehaviourType.Standby).Count != 3 || curCard.card.GetSpec().Ranged != CardRange.Far)
                 return;
             owner.battleCardResultLog?.SetPassiveAbility(this);
-            curCard.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus(){ breakRate = 25, guardBreakMultiplier = 2 });
+            curCard.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus(){ breakRate = 25});
         }
     }
 }

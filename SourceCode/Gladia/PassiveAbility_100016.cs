@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Ark
 {
-    //疾速追杀  自身每使用两张不同的书页，则使第三张书页的进攻型骰子下限+3
+    //疾速追杀  自身每使用两张不同的书页，则使第三张书页的进攻型骰子最小值+2 最大值+1
     public class PassiveAbility_100016 : PassiveAbilityBase
     {
         private List<LorId> _cardIdList = new List<LorId>();
@@ -22,7 +22,7 @@ namespace Ark
                 return;
             }
             _cardIdList.Clear();
-            curCard.ApplyDiceStatBonus(DiceMatch.AllAttackDice, new DiceStatBonus(){ min = 3 });
+            curCard.ApplyDiceStatBonus(DiceMatch.AllAttackDice, new DiceStatBonus(){ min = 2, max=1 });
         }
     }
 }

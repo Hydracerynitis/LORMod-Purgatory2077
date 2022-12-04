@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 namespace Ark
 {
-    //共同进击      与其他友方的骰子共同瞄准一个目标时骰子伤害+2
+    //共同进击      与任意一个友方的骰子共同瞄准一个目标时自身骰子威力+1 骰子伤害+1(不可叠加)
     public class PassiveAbility_HDK5: PassiveAbilityBase
     {
         Dictionary<BattlePlayingCardDataInUnitModel, int> AttackNumber = new Dictionary<BattlePlayingCardDataInUnitModel, int>();
@@ -30,7 +30,7 @@ namespace Ark
         public override void OnUseCard(BattlePlayingCardDataInUnitModel curCard)
         {
             if (AttackNumber.ContainsKey(curCard) && AttackNumber[curCard]>0)
-                curCard.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus() { dmg = 2 });
+                curCard.ApplyDiceStatBonus(DiceMatch.AllDice, new DiceStatBonus() { dmg = 1, power=1 });
         }
     }
 }

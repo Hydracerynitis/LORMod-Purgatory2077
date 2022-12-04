@@ -8,14 +8,14 @@ using LOR_DiceSystem;
 
 namespace Ark
 {
-    //反击战术  使用反击骰时使其最小值+2
+    //反击战术  使用反击骰时使其最小值+1 最大值+2
     public class PassiveAbility_100005 : PassiveAbilityBase
     {
         public override void BeforeRollDice(BattleDiceBehavior behavior)
         {
             if (behavior.Type != BehaviourType.Standby)
                 return;
-            behavior.ApplyDiceStatBonus(new DiceStatBonus(){ min=2 });
+            behavior.ApplyDiceStatBonus(new DiceStatBonus(){ min=1, max=2 });
         }
     }
 }

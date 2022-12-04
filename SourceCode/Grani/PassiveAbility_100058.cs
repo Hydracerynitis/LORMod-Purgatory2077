@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Ark
 {
-    //骑警        每一幕开始时随机两名友方单位获得1层“忍耐”与“守护”
+    //骑警        每一幕开始使随机两名友方单位获得1层"忍耐"
     public class PassiveAbility_100058 : PassiveAbilityBase
     {
         public override void OnRoundStart()
@@ -16,7 +16,6 @@ namespace Ark
             foreach(BattleUnitModel unit in BattleObjectManager.instance.GetAliveList_random(owner.faction, 2))
             {
                 unit.bufListDetail.AddKeywordBufThisRoundByEtc(KeywordBuf.Endurance, 1);
-                unit.bufListDetail.AddKeywordBufThisRoundByEtc(KeywordBuf.Protection, 1);
             }
         }
     }

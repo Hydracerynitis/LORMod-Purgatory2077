@@ -8,16 +8,16 @@ using System;
 
 namespace Ark
 {
-    //永不后退/稳扎稳打     当场上无友方存活时每一幕使自身获得4层“强壮”，3层“破绽”和“束缚”/舞台开启时自身初始光芒上限减少1点
+    //永不后退/稳扎稳打      当场上无友方存活时每一幕使自身获得1层"强壮"，4层"守护"和"束缚"/舞台开启时自身初始光芒上限减少1点
     public class PassiveAbility_100057 : PassiveAbilityBase
     {
         public override void OnRoundStart()
         {
             if (BattleObjectManager.instance.GetAliveList(owner.faction).Exists(x => x != owner))
                 return;
-            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Strength, 4, owner);
-            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Disarm, 3, owner);
-            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Binding, 3, owner);
+            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Strength, 1, owner);
+            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Disarm, 4, owner);
+            owner.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Binding, 4, owner);
         }
         public override int MaxPlayPointAdder() => -1;
     }

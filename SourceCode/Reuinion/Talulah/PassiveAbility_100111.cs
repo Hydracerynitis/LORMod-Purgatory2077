@@ -6,7 +6,7 @@
 
 namespace Ark
 {
-    //烈火之势      命中目标时施加1层“烧伤”且追加目标“烧伤”层数的伤害
+    //烈火之势      命中目标时施加1层"烧伤"且触发一次目标的"烧伤"buff效果
     public class PassiveAbility_100111 : PassiveAbilityBase
     {
         public override void OnSucceedAttack(BattleDiceBehavior behavior)
@@ -18,11 +18,9 @@ namespace Ark
             target.bufListDetail.AddKeywordBufByEtc(KeywordBuf.Burn, 1, owner);
             foreach (BattleUnitBuf activatedBuf in owner.bufListDetail.GetActivatedBufList())
             {
-                if (activatedBuf.bufType == KeywordBuf.Burn)
+                if (activatedBuf is BattleUnitBuf_burn)
                 {
-                    int stack = activatedBuf.stack;
-                    if (stack > 0)
-                        target.TakeDamage(stack, DamageType.Passive);
+                    activatedBuf.OnRoundEnd();
                 }
             }
         }
